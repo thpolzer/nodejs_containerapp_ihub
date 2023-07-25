@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Container App</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Auf die Angabe des lib-Pfades wird verzichtet, da
+da dieser bereits in der static-Middleware (app.js) 
+definiert wurde -->
+
+<link rel="stylesheet" type="text/css"
+	href="bootstrap-4.0.0/dist/css/bootstrap.min.css">
+
+<!-- Watch out: The order of the files below is important: 1.jQuery, 2.popper, 3.bootstrap -->
+<script src="jQuery-363.js"></script>
+
+<script src="bootstrap-4.0.0/dist/js/bootstrap.min.js"></script>
+
+<script src="popper.min.js"></script>
+</head>
+
+
+<body>
+
+    <div class="container">
+        <h2>Polizeibedienstete</h2>
+        <div class="table-responsive"></div>
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th>ID</th>
+              <th>Nachname</th>
+              <th>Vorname</th>
+              <th>Dienstgrad</th>
+              <th>Dienststelle</th>
+              <th>Gehalt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% data.forEach(function(item){ %>         
+              <tr>
+                <td><%=item.id%></td>
+                <td><%=item.nachname%></td>
+                <td><%=item.vorname%></td>
+                <td><%=item.dg%></td>
+                <td><%=item.pp%></td>
+                <td><%=item.gehalt%></td>
+              </tr>
+              <%  }); %>
+          </tbody>
+        </table>
+      </div>
+      </div>
+</body>
+
+
+
+</html>
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <title>Container App</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nachname</th>
+                <th>Vorname</th>
+                <th>Dienstgrad</th>
+                <th>Dienststelle</th>
+                <th>Gehalt</th>
+              </tr>
+            <% data.forEach(function(item){ %>         
+          <tr>
+            <td><%=item.id%></td>
+            <td><%=item.nachname%></td>
+            <td><%=item.vorname%></td>
+            <td><%=item.dg%></tr>
+            <td><%=item.pp%></td>
+            <td><%=item.gehalt%></td>
+          </tr>
+          <%  }); %>
+        </table>
+    </body>
+</html> -->
