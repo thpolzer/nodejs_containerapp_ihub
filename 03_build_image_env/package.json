@@ -1,0 +1,22 @@
+{
+  "name": "03_build_image_env",
+  "version": "1.0.0",
+  "description": "docker demo with env variable",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/thpolzer/nodejs_containerapp_ihub.git"
+  },
+  "author": "tpolzer@gmx.net",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thpolzer/nodejs_containerapp_ihub/issues"
+  },
+  "homepage": "https://github.com/thpolzer/nodejs_containerapp_ihub#readme",
+  "dependencies": {
+    "processenv": "^3.0.9"
+  }
+}
