@@ -43,10 +43,39 @@ RUN npm install
 #RUN  cd /home/dev 
 #RUN  npm install 
 #Das aber hätte wiederum zu einem Fehler geführt, da für jedes RUN-Kommando ein neuer Image-Layer erzeugt wird und für hierfür eine neue Shell im  Stamm-Verzeichnis (root) geöffnt wird! 
-#Lösung: Zusammenführung der Kommandos in einem RUN-Befehl: RUN  cd /home/dev && npm install 
+#Lösung: Zusammenführung der Kommandos in einem RUN-Befehl: RUN  cd /home/dev && npm install   
 
-#ohne WORKDIR müsste man schreiben: CMD ["node", "/home/dev/app.js"]
-CMD ["node", "app.js"]
+#ohne WORKDIR müsste man schreiben: CMD ["node", "/home/dev/app.js"]  
+CMD ["node", "app.js"]  
 
-# 4 Build-Kommando
-docker build -t advancedapp:v01 .
+# 4 Build-Kommando  
+docker build -t advancedapp:v01 .  
+
+# 5 Starten des Containers 
+docker run --name myapp -p 3000:3000 advancedapp:v01 
+
+# 6 Restart Policy   
+Ein Docker-Container läuft so lange, bis er crasht (oder auch von außen beendet wird).  
+=> restart-Parameter  
+    - Default = no  
+    - weitere Werte:   
+        - im Fehlerfall: --restart=on-failure  
+        - Anzahl der Wiederholungen im Fehlerfall:  --restart=on-failure:5  
+        - immer: --restart=always  
+docker run --name myapp -p 3000:3000 --restart=always advancedapp:v01  
+
+
+# 7 Pushen in Docker Registry  
+- User in Docker Hub anlegen: https://hub.docker.com/
+
+docker login  
+docker build -t polzer/ihub-env-app:v01 .  
+docker push polzer/ihub-env-app:v01  
+
+
+
+
+
+
+
+
