@@ -1,4 +1,5 @@
 docker pull mysql:8.0-debian
+docker pull mysql:5.7.43
 
 # Netzwerke in Docker
 docker network ls
@@ -14,7 +15,7 @@ docker network create database-network
 ## Verbinden mit Netzwerken  
 Variante 1: Beim Start des Containers
 Wichtig: Network Alias setzen, damit der Container von einem anderen Container auch gefunden werden kann.
-docker run -it --name mysql-test --network database-network  --network-alias db-host -v $(pwd)/mysql.d:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_USER=testuser -e MYSQL_PASSWORD="testuser" -d mysql:8.0-debian  
+docker run -it --name mysql-test --network database-network  --network-alias db-host -v $(pwd)/mysql.d:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_USER=testuser -e MYSQL_PASSWORD="testuser" -d mysql:5.7.43  
 
 # In den Container hinein  
 docker exec -it mysql-test /bin/bash  
@@ -25,12 +26,19 @@ pw: secret
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';  
 flush privileges;  
 
+ALTER USER 'testuser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';  
+flush privileges; 
+
 
 CREATE USER 'testuser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'testuser';
 
-GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, INDEX, DROP, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES, SHUTDOWN ON testuser.* TO 'testuser'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, INDEX, DROP, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES ON testuser.* TO 'testuser'@'localhost';
+
+GRANT ALL ON testuser.* TO 'testuser'@'localhost';
 
 CREATE DATABASE testuser;
+
+grant all privileges on testuser.* to 'testuser'@'%' with grant option;
 
 create table testuser.persons (id int,nachname varchar(30),vorname varchar(30),dg varchar(10),pp varchar(30),gehalt double);
 
@@ -42,4 +50,4 @@ insert into testuser.persons values (3, 'Ehrmann', 'Sabine', 'KHK', 'PPFFM', 650
 ## Image für Webapplication  
 docker build -t webapplication:v01 .  
 
-docker run -it --name webapp-test --network database-network  --network-alias webapphost -e SERVERNAME="db-host" -p webapplication:v01   
+docker run -it --name webapp-test --network database-network  --network-alias webapphost -e SERVERNAME="db-host" -p 3000:3000 webapplication:v01   
