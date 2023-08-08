@@ -51,3 +51,6 @@ insert into testuser.persons values (3, 'Ehrmann', 'Sabine', 'KHK', 'PPFFM', 650
 docker build -t webapplication:v01 .  
 
 docker run -it --name webapp-test --network database-network  --network-alias webapphost -e SERVERNAME="db-host" -p 3000:3000 webapplication:v01   
+
+
+## Image für phpadmin
