@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "declaration": true,
+        "esModuleInterop": true,
+        "lib":["DOM", "ESNext"],
+        "module": "CommonJS",
+        "outDir": "build",
+        "resolveJsonModule": true,
+        "strict": true,
+        "target": "ES2019"
+    },
+    "include": [
+        "./**/*.ts"
+    ],
+    "exclude": [
+        "./build"
+    ]
+}
