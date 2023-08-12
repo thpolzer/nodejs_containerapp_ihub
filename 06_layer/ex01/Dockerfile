@@ -4,3 +4,4 @@ ADD . .
 
 CMD ["node", "app.js"]
 
+docker build -t layerapp .

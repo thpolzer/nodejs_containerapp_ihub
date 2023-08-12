@@ -3,7 +3,7 @@ docker pull node:16.20-alpine
 -> 4 Layer:
 16.20-alpine: Pulling from library/node
 31e352740f53: Already exists 
-a1e50b3961de: Pull complete 
+a1e50b3961de: Pull complete docker run -it --name webapp-test1 --network host  -e SERVERNAME=localhost -p 3000:3000 webapplication:v01 
 fdc5b5e5fbfe: Pull complete 
 55fd4a41ee80: Pull complete 
 Digest: sha256:6c381d5dc2a11dcdb693f0301e8587e43f440c90cdb8933eaaaabb905d44cdb9

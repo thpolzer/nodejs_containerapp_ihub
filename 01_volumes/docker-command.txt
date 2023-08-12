@@ -1,1 +1,1 @@
-docker run -d -p 3003:80 --name webserver -v $(pwd):/usr/share/nginx/html nginx
+docker run -d -p 3003:80 --name webserver3 -v $(pwd):/usr/share/nginx/html nginx
